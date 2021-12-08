@@ -1,0 +1,4 @@
+.opacity-75:hover {
+    transition: all 225ms ease-in-out;
+    opacity: 1 !important;
+}

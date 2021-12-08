@@ -1,0 +1,60 @@
+<div class="card opacity-75">
+  <div class="card-header">
+    <h5>
+      Create New Booking
+    </h5>
+  </div>
+
+  <form [formGroup]="bookingForm" (ngSubmit)="addBooking()">
+    <div class="card-body">
+
+      <div class="row mb-2">
+        <div class="col">
+          <!-- Id -->
+          <label class="form-label">Id</label>
+          <input type="number" class="form-control" formControlName="id" />
+        </div>
+        <div class="col">
+          <!-- RoomNumber -->
+          <label class="form-label">RoomNumber</label>
+          <input type="number" class="form-control" formControlName="roomNumber" />
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-4">
+          <!-- Name -->
+          <label class="form-label">Guest Name</label>
+          <input type="text" class="form-control" formControlName="name" />
+        </div>
+      </div>
+
+      <div class="row mb-2">
+        <div class="col-4">
+          <div *ngIf="bookingForm.get('name')?.hasError('minlength')" class="text-danger">
+            *Der name ist zu kurz
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <!-- StartDate -->
+          <label class="form-label">StartDate</label>
+          <input formControlName="startDate" type="date" class="form-control" (input)="dateChanged($event, true)"
+            [value]="booking.startDate | date:'yyyy-MM-dd'" name="startDate of Bookings" />
+        </div>
+        <div class="col">
+          <!-- EndDate -->
+          <label class="form-label">StartDate</label>
+          <input formControlName="endDate" type="date" class="form-control" (input)="dateChanged($event, false)"
+            [value]="booking.endDate | date:'yyyy-MM-dd'" name="endDate of Bookings" />
+        </div>
+      </div>
+
+    </div>
+    <div class="card-footer">
+      <button [disabled]="bookingForm.invalid" type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
